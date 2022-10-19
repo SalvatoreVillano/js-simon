@@ -1,10 +1,15 @@
 const numeriCasualiHTML = document.getElementById('numeriCasuali');
 const textInput = document.getElementById('textInput');
-const inputNumber = document.getElementById('number');
+let inputNumber = document.getElementById('number');
 const btn = document.getElementById('esegui');
 const numeriRandom = [];
-/* const numeriUtente = []; */
-/* const numeriUguali = []; */
+const numeriUtente = [];
+const numeriUguali = [];
+let numeriAggiunti = 0;
+let cond = true;
+
+
+
 randomize(numeriRandom);
 console.log('numeri generati: ', numeriRandom);
 numeriCasualiHTML.innerHTML = "Tieni a mente questi numeri, dovrai ricordarteli: " + numeriRandom;
@@ -22,6 +27,39 @@ const timer = setInterval(function(){
         clearInterval(timer)
     }
 }, 1000)
+
+
+btn.addEventListener('click', aggiungiNumeriUtente);
+
+function aggiungiNumeriUtente(){ 
+
+                    inserisciNumeri(numeriUtente)
+                    numeriAggiunti++
+                    if(numeriAggiunti == 5){
+                    confrontaNumeri(numeriUguali)
+                    console.log('numeri indovinati', numeriUguali)
+                    numeriCasualiHTML.classList.remove('d-none')
+                    numeriCasualiHTML.innerHTML = `Hai indovinato ${numeriUguali.length} numeri, ovvero: ${numeriUguali}`
+    }
+}
+    function inserisciNumeri(array){
+        let inputNumber = document.getElementById('number').value;
+        array.push(inputNumber);
+        console.log(array);
+    }
+
+    function confrontaNumeri(array){
+        for (let i = 0; i < numeriRandom.length; i++){
+        if(array.includes(numeriUtente[i])){
+            array.push(numeriUtente[i])
+            console.log(numeriUguali)
+            }
+    }
+}
+
+    
+
+
 
 function randomize(array){
     for (let i = 0; i < 5; i++){
