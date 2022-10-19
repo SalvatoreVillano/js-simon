@@ -44,21 +44,19 @@ function aggiungiNumeriUtente(){
 }
     function inserisciNumeri(array){
         let inputNumber = document.getElementById('number').value;
-        array.push(inputNumber);
+        array.push(parseInt(inputNumber));
         console.log(array);
     }
 
     function confrontaNumeri(array){
         for (let i = 0; i < numeriRandom.length; i++){
-        if(array.includes(numeriUtente[i])){
-            array.push(numeriUtente[i])
-            console.log(numeriUguali)
+             if(numeriRandom.includes(numeriUtente[i])){ 
+/*             if(numeriRandom.some(v=> numeriUtente[i].indexOf(v) !== -1)){
+ */            array.push(numeriUtente[i])
+            console.log(array)
             }
     }
 }
-
-    
-
 
 
 function randomize(array){
